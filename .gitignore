@@ -1,0 +1,20 @@
+# Xcode
+DerivedData/
+build/
+*.xcuserdata
+*.xcworkspace
+!*.xcodeproj/project.pbxproj
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+
+# macOS
+.DS_Store
+*.swp
+*~
+
+# Generated Xcode project (regenerated via xcodegen)
+SensorDash.xcodeproj/
+
+# Crash reports
+*.ips
+*.crash

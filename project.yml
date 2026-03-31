@@ -1,0 +1,43 @@
+name: SensorDash
+options:
+  bundleIdPrefix: com.sensordash
+  deploymentTarget:
+    macOS: "14.0"
+  xcodeVersion: "15.0"
+  minimumXcodeGenVersion: "2.35.0"
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    ARCHS: arm64
+    SWIFT_OBJC_BRIDGING_HEADER: SensorDash/Bridge/SensorDash-Bridging-Header.h
+    OTHER_LDFLAGS:
+      - -weak_framework IOKit
+      - -framework CoreMotion
+      - -framework QuartzCore
+
+targets:
+  SensorDash:
+    type: application
+    platform: macOS
+    sources:
+      - path: SensorDash
+        excludes:
+          - "**/.DS_Store"
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.sensordash.app
+        INFOPLIST_KEY_LSUIElement: false
+        INFOPLIST_KEY_NSMainStoryboardFile: ""
+        GENERATE_INFOPLIST_FILE: true
+        INFOPLIST_KEY_NSMotionUsageDescription: "SensorDash reads motion sensors (accelerometer, gyroscope) to display real-time hardware data."
+        INFOPLIST_KEY_NSLocationUsageDescription: "SensorDash reads location sensors for barometric altitude data."
+        INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription: "SensorDash scans for nearby Bluetooth devices to display RSSI signal strength."
+        INFOPLIST_KEY_NSCameraUsageDescription: "SensorDash inspects camera capabilities including depth data formats."
+        CODE_SIGN_ENTITLEMENTS: SensorDash/SensorDash.entitlements
+        ENABLE_HARDENED_RUNTIME: false
+        CODE_SIGN_IDENTITY: "-"
+        PRODUCT_NAME: SensorDash
+    entitlements:
+      path: SensorDash/SensorDash.entitlements
